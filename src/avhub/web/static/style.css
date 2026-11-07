@@ -1,0 +1,171 @@
+:root {
+  --bg: #f4f5f7;
+  --panel: #ffffff;
+  --text: #1c1f24;
+  --muted: #687080;
+  --border: #d9dde3;
+  --button: #eef0f3;
+  --button-hover: #e2e5ea;
+  --accent: #2563eb;
+  --accent-text: #ffffff;
+  --ok: #15803d;
+  --bad: #b91c1c;
+  --warn: #b45309;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111317;
+    --panel: #1a1d23;
+    --text: #e7e9ee;
+    --muted: #9aa1ae;
+    --border: #2c3139;
+    --button: #252a32;
+    --button-hover: #2f353f;
+    --accent: #3b82f6;
+    --ok: #4ade80;
+    --bad: #f87171;
+    --warn: #fbbf24;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--panel);
+}
+.bar h1 { font-size: 17px; margin: 0; flex: 1; }
+
+select, input[type="number"] {
+  font: inherit;
+  color: inherit;
+  background: var(--button);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 8px;
+}
+
+.badge {
+  font-size: 13px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  color: var(--bad);
+}
+.badge[data-ok="true"] { color: var(--ok); }
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 16px;
+  padding: 16px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+@media (max-width: 860px) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+}
+
+.frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.frame img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.no-picture {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  color: #9aa1ae;
+}
+.overlay { position: absolute; top: 10px; left: 10px; display: flex; gap: 6px; }
+.chip {
+  font-size: 12px; font-weight: 600;
+  padding: 2px 8px; border-radius: 999px;
+  background: rgba(0, 0, 0, .6); color: #fff;
+}
+.chip.warn { background: rgba(180, 83, 9, .85); }
+
+.readout {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin: 12px 0 0;
+}
+.readout div {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 10px;
+}
+.readout dt { font-size: 12px; color: var(--muted); }
+.readout dd { margin: 0; font-variant-numeric: tabular-nums; font-weight: 600; }
+
+.controls { display: flex; flex-direction: column; gap: 12px; }
+.group {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+}
+.group h2 {
+  font-size: 14px;
+  margin: 0 0 10px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.group h2 small, .switch small { color: var(--muted); font-weight: 400; font-size: 12px; }
+.edit { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--muted); }
+
+button {
+  font: inherit;
+  color: inherit;
+  background: var(--button);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  cursor: pointer;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+button:hover { background: var(--button-hover); }
+button.active, button:active { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
+button:disabled { opacity: .45; cursor: default; }
+
+.dpad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  max-width: 240px;
+  margin: 0 auto;
+}
+.dpad button { aspect-ratio: 1; font-size: 22px; }
+
+.row { display: flex; gap: 6px; margin-top: 8px; }
+.row > * { flex: 1; min-width: 0; }
+.row input { flex: 1.2; }
+
+.presets.saving button { border-color: var(--warn); color: var(--warn); }
+
+.switch { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+.switch input { width: 18px; height: 18px; accent-color: var(--warn); }
+
+.message { min-height: 1.4em; margin: 0; color: var(--bad); font-size: 13px; }

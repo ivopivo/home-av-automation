@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Camera Control</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <header class="bar">
+    <h1>Camera Control</h1>
+    <select id="camera" aria-label="Camera" hidden></select>
+    <span id="link" class="badge" data-ok="false">Connecting…</span>
+  </header>
+
+  <main class="layout">
+    <section class="view">
+      <div class="frame">
+        <img id="snapshot" alt="Live picture from the camera" hidden>
+        <div id="no-picture" class="no-picture">Loading…</div>
+        <div class="overlay">
+          <span id="moving" class="chip" hidden>Moving</span>
+          <span id="privacy-chip" class="chip warn" hidden>Privacy</span>
+        </div>
+      </div>
+      <dl class="readout">
+        <div><dt>Pan</dt><dd id="pan">–</dd></div>
+        <div><dt>Tilt</dt><dd id="tilt">–</dd></div>
+        <div><dt>Zoom</dt><dd id="zoom">–</dd></div>
+        <div><dt>Status</dt><dd id="status">–</dd></div>
+      </dl>
+    </section>
+
+    <section class="controls">
+      <div class="group">
+        <h2>Move <small>hold to move · arrow keys</small></h2>
+        <div class="dpad">
+          <button data-move="up_left" aria-label="Up left">↖</button>
+          <button data-move="up" aria-label="Up">↑</button>
+          <button data-move="up_right" aria-label="Up right">↗</button>
+          <button data-move="left" aria-label="Left">←</button>
+          <button data-preset="home" class="home" aria-label="Home preset">⌂</button>
+          <button data-move="right" aria-label="Right">→</button>
+          <button data-move="down_left" aria-label="Down left">↙</button>
+          <button data-move="down" aria-label="Down">↓</button>
+          <button data-move="down_right" aria-label="Down right">↘</button>
+        </div>
+        <div class="row zoom">
+          <button data-move="zoom_out" aria-label="Zoom out">− Zoom</button>
+          <button data-move="zoom_in" aria-label="Zoom in">Zoom +</button>
+        </div>
+      </div>
+
+      <div class="group">
+        <h2>Turn</h2>
+        <div class="row turn">
+          <button data-turn="-60">◀ 60°</button>
+          <button data-turn="-15">◀ 15°</button>
+          <button data-turn="15">15° ▶</button>
+          <button data-turn="60">60° ▶</button>
+        </div>
+        <form id="turn-form" class="row">
+          <input id="turn-deg" type="number" step="1" min="-340" max="340" value="30"
+                 aria-label="Degrees, negative turns left">
+          <button type="submit">Turn by °</button>
+        </form>
+      </div>
+
+      <div class="group">
+        <h2>Presets
+          <label class="edit"><input id="save-mode" type="checkbox"> save</label>
+        </h2>
+        <div class="row presets">
+          <button data-preset="home">Home</button>
+          <button data-preset="1">1</button>
+          <button data-preset="2">2</button>
+          <button data-preset="3">3</button>
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="switch">
+          <input id="privacy" type="checkbox">
+          <span>Privacy mode <small>camera turns away</small></span>
+        </label>
+      </div>
+
+      <p id="message" class="message" role="status"></p>
+    </section>
+  </main>
+</body>
+</html>

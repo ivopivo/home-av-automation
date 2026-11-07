@@ -1,11 +1,25 @@
 # Copy this file to config.yaml and adjust it to your home.
 # config.yaml is git-ignored, so your IPs and passwords never end up on GitHub.
 
+# Web UI at http://127.0.0.1:8080/ - it has no login, so only use
+# host: 0.0.0.0 (reachable from phones etc.) on a network you trust.
+web:
+  host: 127.0.0.1
+  port: 8080
+
 devices:
   receiver:
     driver: denon_avr
     name: Living room receiver
     host: 192.168.1.50
+
+  camera:
+    driver: qsys_camera
+    name: Meeting room camera
+    host: 192.168.1.20          # the Q-SYS Core, not the camera
+    component: NC-12x80-1       # camera component name in the Q-SYS design
+    # user: avhub               # only if the design has access control
+    # password: "1234"
 
 automations:
   - name: Default volume when the receiver turns on

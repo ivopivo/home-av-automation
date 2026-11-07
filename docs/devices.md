@@ -10,6 +10,8 @@ Keep real IP addresses and passwords out of this file - put them in `config.yaml
 | Projector | | | | | todo |
 | HDMI matrix | | | | | todo |
 | Media player | | | | | todo |
+| PTZ camera | QSC NC-12x80 (via Q-SYS Core) | Meeting room | LAN | QRC to the Core, TCP 1710; RTSP 554 and `/snapshot.jpg` on the camera | `qsys_camera` done |
+| Ceiling microphone | Sennheiser TeamConnect Ceiling 2 | Meeting room | LAN | SSC (JSON over UDP/TCP 45), also via Q-SYS plugin | todo |
 
 ## Typical protocols per device type
 
